@@ -17,6 +17,8 @@ limitations under the License.
 package logic
 
 import (
+	"encoding/json"
+	"k8s.io/klog/v2"
 	"math"
 	"time"
 
@@ -152,6 +154,12 @@ func (e *minResourcesEstimator) GetResourceEstimation(s *model.AggregateContaine
 	newResources := make(model.Resources)
 	for resource, resourceAmount := range originalResources {
 		if resourceAmount < e.minResources[resource] {
+			c, _ := s.SaveToCheckpoint()
+			prettyCheckpoint, err := json.MarshalIndent(c, "", "  ")
+			if err != nil {
+				klog.Errorf("YYY: Error during marshalling checkpoint: %s", err)
+			}
+			klog.Warningf("XXX: Computed resources for %s were below minimum! Computed %v, minimum is %v. Here's the checkpoint/state: %s", resource, resourceAmount, e.minResources[resource], prettyCheckpoint)
 			resourceAmount = e.minResources[resource]
 		}
 		newResources[resource] = resourceAmount
