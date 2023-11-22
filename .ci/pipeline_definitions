@@ -80,10 +80,9 @@ vertical-pod-autoscaler:
               - '^cluster-autoscaler/.*'
     traits:
       version:
-        preprocess:
-          'inject-commit-hash'
         inject_effective_version: true
-        versionfile: 'vertical-pod-autoscaler/common/VERSION'
+        read_callback: .ci/read-vpa-version.sh
+        write_callback: .ci/write-vpa-version.sh
       publish:
         oci-builder: docker-buildx
         platforms:
