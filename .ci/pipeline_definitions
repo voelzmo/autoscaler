@@ -107,7 +107,7 @@ vertical-pod-autoscaler:
             registry: 'gcr-readwrite'
             image: 'eu.gcr.io/gardener-project/gardener/autoscaler/vertical-pod-autoscaler/vpa-updater'
             dockerfile: './vertical-pod-autoscaler/pkg/updater/Dockerfile'
-           vpa-admission-controller:
+          vpa-admission-controller:
             inputs:
               repos:
                 source: ~ # default
