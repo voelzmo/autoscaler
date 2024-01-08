@@ -76,6 +76,7 @@ vertical-pod-autoscaler:
       trigger_paths:
         include:
           - 'vertical-pod-autoscaler'
+          - '.ci'
       source_labels:
       - name: 'cloud.gardener.cnudie/dso/scanning-hints/source_analysis/v1'
         value:
