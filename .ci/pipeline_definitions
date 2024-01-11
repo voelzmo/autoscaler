@@ -65,15 +65,6 @@ vertical-pod-autoscaler:
         image: 'golang:1.20.5'
         output_dir: 'binary'
   jobs:
-    head-update:
-      traits:
-        component_descriptor:
-          ocm_repository_mappings:
-            - repository: europe-docker.pkg.dev/gardener-project/releases
-        draft_release: ~
-    pull-request:
-      traits:
-        pull-request: ~
     release:
       traits:
         version:
