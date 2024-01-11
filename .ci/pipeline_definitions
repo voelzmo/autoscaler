@@ -84,6 +84,7 @@ vertical-pod-autoscaler:
           git_tags:
             - ref_template: refs/tags/vpa-{VERSION}
           on_tag_conflict: 'fail'
+          release_notes_policy: 'disabled'
         slack:
           default_channel: 'internal_scp_workspace'
           channel_cfgs:
